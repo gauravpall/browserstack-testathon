@@ -7,12 +7,14 @@ export class CartPage extends BasePage {
   readonly totalPrice: Locator;
   readonly checkoutButton: Locator;
 
-  // Cart Modal Elements (from screenshot 1)
+  // Cart Modal Elements (based on actual DOM structure)
   readonly cartModal: Locator;
   readonly cartModalCloseButton: Locator;
   readonly cartModalCheckoutButton: Locator;
   readonly cartModalSubtotal: Locator;
   readonly cartModalQuantity: Locator;
+  readonly cartModalProductTitle: Locator;
+  readonly cartModalProductPrice: Locator;
 
   constructor(page: Page) {
     super(page);
@@ -21,12 +23,14 @@ export class CartPage extends BasePage {
     this.totalPrice = page.locator('.total-price, [data-testid="total"]');
     this.checkoutButton = page.getByRole('button', { name: /checkout/i });
 
-    // Cart Modal locators using simple text and class selectors
-    this.cartModal = page.locator('.bag, .cart-modal, [class*="bag"], [class*="cart"]');
-    this.cartModalCloseButton = page.locator('button:has-text("×"), button[aria-label="Close"]');
-    this.cartModalCheckoutButton = page.locator('button:has-text("CHECKOUT")');
-    this.cartModalSubtotal = page.locator('text=SUBTOTAL');
-    this.cartModalQuantity = page.locator('text=Quantity:');
+    // Cart Modal locators based on actual DOM structure
+    this.cartModal = page.locator('.float-cart.float-cart--open');
+    this.cartModalCloseButton = page.locator('.float-cart__close-btn');
+    this.cartModalCheckoutButton = page.locator('.float-cart__footer .buy-btn');
+    this.cartModalSubtotal = page.locator('.float-cart__footer .sub');
+    this.cartModalQuantity = page.locator('.bag__quantity');
+    this.cartModalProductTitle = page.locator('.float-cart__shelf-container .title');
+    this.cartModalProductPrice = page.locator('.float-cart__shelf-container .shelf-item__price p');
   }
 
   async goto() {
@@ -59,26 +63,42 @@ export class CartPage extends BasePage {
   }
 
   async getCartModalSubtotal() {
-    const subtotalText = await this.cartModalSubtotal.textContent();
+    const subtotalElement = this.page.locator('.sub-price__val');
+    const subtotalText = await subtotalElement.textContent();
     return subtotalText?.replace(/[^\d.]/g, '') || '0';
   }
 
   async getCartModalQuantity() {
     const quantityText = await this.cartModalQuantity.textContent();
-    return quantityText?.match(/\d+/)?.[0] || '0';
+    return quantityText?.trim() || '0';
   }
 
   async verifyCartModalContent(expectedProduct: string, expectedPrice: string) {
     await this.waitForCartModal();
 
-    // Verify product name using simple text locator
-    const productName = this.page.locator(`text=${expectedProduct}`);
-    await expect(productName).toBeVisible();
+    // Verify product name in cart modal
+    await expect(this.cartModalProductTitle).toHaveText(expectedProduct);
 
-    // Verify price using simple text locator
-    const price = this.page.locator(`text=${expectedPrice}`);
-    await expect(price).toBeVisible();
+    // Verify price in cart modal (normalize both prices by removing all spaces and special characters)
+    const itemPrice = this.cartModalProductPrice;
+    const actualPrice = await itemPrice.textContent();
+
+    // Normalize prices: remove all spaces, keep only digits, dots, and dollar signs
+    const normalizePrice = (price: string) => price.replace(/\s+/g, '').replace(/\$\s*/g, '$');
+
+    const normalizedActual = normalizePrice(actualPrice || '');
+    const normalizedExpected = normalizePrice(expectedPrice);
+
+    expect(normalizedActual).toContain(normalizedExpected);
 
     return true;
+  }
+
+  async getCartModalProductName() {
+    return await this.cartModalProductTitle.textContent();
+  }
+
+  async getCartModalProductPrice() {
+    return await this.cartModalProductPrice.textContent();
   }
 }

@@ -17,13 +17,13 @@ export class DemoPage extends BasePage {
     this.productContainer = page.locator('.shelf-container');
     this.productItems = page.locator('.shelf-item');
     this.productsFoundText = page.locator('.products-found span');
-    // Cart locators - need to find these in the header/navigation
-    this.cartIcon = page.locator('.cart-icon, [data-testid="cart"], .cart');
-    this.cartCount = page.locator('.cart-count, [data-testid="cart-count"], .cart-badge');
+    // Cart locators - based on the DOM structure showing bag quantity
+    this.cartIcon = page.locator('.cart-icon, [data-testid="cart"], .cart, .bag');
+    this.cartCount = page.locator('.bag__quantity');
 
-    // Cart Modal locators using simple selectors
-    this.cartModal = page.locator('.bag, .cart-modal, [class*="bag"], [class*="cart"]');
-    this.cartModalCheckoutButton = page.locator('button:has-text("CHECKOUT")');
+    // Cart Modal locators based on actual DOM structure
+    this.cartModal = page.locator('.float-cart.float-cart--open');
+    this.cartModalCheckoutButton = page.locator('.float-cart__footer .buy-btn');
   }
 
   async goto() {
@@ -31,20 +31,23 @@ export class DemoPage extends BasePage {
   }
 
   async getProduct(productName: string) {
-    // Find the shelf-item container that contains the product title
-    return this.page.locator(`.shelf-item:has(.shelf-item__title:text("${productName}"))`);
+    // Find the shelf-item container that contains the exact product title
+    return this.page.locator(`.shelf-item:has(.shelf-item__title:text-is("${productName}"))`).first();
   }
 
   async getProductByTitle(productName: string) {
     return this.page.locator(`.shelf-item:has(.shelf-item__title:text("${productName}"))`);
   }
 
-  async addToCart(productName: string) {
-    // Find the shelf-item container, then click the Add to cart div
-    const productContainer = this.page.locator(`.shelf-item:has(.shelf-item__title:text("${productName}"))`);
-    const addToCartDiv = productContainer.locator('.shelf-item__buy-btn');
-    await addToCartDiv.click();
-  }
+async addToCart(productName: string) {
+  // Find the shelf-item container that contains the exact product title
+  const productContainer = this.page.locator(`.shelf-item:has(.shelf-item__title:text-is("${productName}"))`).first();
+
+  // Find the Add to cart button within that specific product container
+  const addButton = productContainer.locator('.shelf-item__buy-btn');
+
+  await addButton.click();
+}
 
   async getProductPrice(productName: string) {
     // Find the shelf-item container, then get the price

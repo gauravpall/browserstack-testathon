@@ -28,8 +28,8 @@ export class CheckoutPage extends BasePage {
     this.firstNameField = page.locator('input[placeholder*="First"], input[name*="first"], input[id*="first"]').first();
     this.lastNameField = page.locator('input[placeholder*="Last"], input[name*="last"], input[id*="last"]').first();
     this.addressField = page.locator('input[placeholder*="Address"], input[name*="address"], input[id*="address"]').first();
-    this.stateProvinceField = page.locator('input[placeholder*="State"], input[name*="state"], input[id*="state"]').first();
-    this.postalCodeField = page.locator('input[placeholder*="Postal"], input[name*="postal"], input[id*="postal"], input[placeholder*="Zip"], input[name*="zip"]').first();
+    this.stateProvinceField = page.locator('input[id*="provinceInput"]').first();
+    this.postalCodeField = page.locator('input[id*="postCodeInput"]').first();
 
     // Submit button using simple text selector
     this.submitButton = page.locator('button:has-text("SUBMIT")');
