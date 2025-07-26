@@ -1,16 +1,52 @@
 export const TestData = {
   users: {
-    validUser: {
+    demouser: {
       username: 'demouser',
       password: 'testingisfun99',
+      description: 'Standard demo user with full access',
+      capabilities: ['login', 'browse', 'cart', 'checkout', 'orders', 'favorites'],
+      restrictions: [],
+      expectedIssues: []
     },
-    lockedUser: {
+    image_not_loading_user: {
+      username: 'image_not_loading_user',
+      password: 'testingisfun99',
+      description: 'User experiencing image loading issues',
+      capabilities: ['login', 'browse', 'cart', 'checkout'],
+      restrictions: [],
+      expectedIssues: ['images_not_loading', 'visual_degradation']
+    },
+    existing_orders_user: {
+      username: 'existing_orders_user',
+      password: 'testingisfun99',
+      description: 'User with existing order history',
+      capabilities: ['login', 'browse', 'cart', 'checkout', 'view_orders'],
+      restrictions: [],
+      expectedIssues: []
+    },
+    locked_user: {
       username: 'locked_user',
-      password: 'anypassword',
+      password: 'testingisfun99',
+      description: 'User account that may be locked or restricted',
+      capabilities: ['login_attempt'],
+      restrictions: ['may_not_login', 'limited_access'],
+      expectedIssues: ['login_failure', 'access_denied']
+    },
+    fav_user: {
+      username: 'fav_user',
+      password: 'testingisfun99',
+      description: 'User with existing favorites/wishlist items',
+      capabilities: ['login', 'browse', 'cart', 'checkout', 'view_favorites'],
+      restrictions: [],
+      expectedIssues: []
     },
     invalidUser: {
       username: 'nonexistentuser',
       password: 'wrongpassword',
+      description: 'Invalid user for negative testing',
+      capabilities: [],
+      restrictions: ['invalid_credentials'],
+      expectedIssues: ['login_failure']
     },
   },
   products: {
