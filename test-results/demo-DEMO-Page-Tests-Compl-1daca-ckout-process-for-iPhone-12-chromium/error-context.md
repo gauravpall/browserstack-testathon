@@ -1,0 +1,140 @@
+# Page snapshot
+
+```yaml
+- link:
+  - /url: /
+  - img
+- navigation:
+  - link "Offers":
+    - /url: /offers
+    - strong: Offers
+  - link "Orders":
+    - /url: /orders
+    - strong: Orders
+  - link "Favourites":
+    - /url: /favourites
+    - strong: Favourites
+- text: demouser
+- navigation:
+  - link "Logout":
+    - /url: /offers
+- main:
+  - heading "Vendors:" [level=4]
+  - checkbox "Apple"
+  - text: Apple
+  - checkbox "Samsung"
+  - text: Samsung
+  - checkbox "Google"
+  - text: Google
+  - checkbox "OnePlus"
+  - text: OnePlus 25 Product(s) found.
+  - button "delete"
+  - img "iPhone 12"
+  - paragraph: iPhone 12
+  - text: $799.00 or 9 x $ 88.78 Add to cart
+  - button "delete"
+  - img "iPhone 12 Mini"
+  - paragraph: iPhone 12 Mini
+  - text: $699.00 or 9 x $ 77.67 Add to cart
+  - button "delete"
+  - img "iPhone 12 Pro Max"
+  - paragraph: iPhone 12 Pro Max
+  - text: $1099.00 or 9 x $ 122.11 Add to cart
+  - button "delete"
+  - img "iPhone 12 Pro"
+  - paragraph: iPhone 12 Pro
+  - text: $999.00 or 5 x $ 199.80 Add to cart
+  - button "delete"
+  - img "iPhone 11"
+  - paragraph: iPhone 11
+  - text: $599.00 or 8 x $ 74.88 Add to cart
+  - button "delete"
+  - img "iPhone 11 Pro"
+  - paragraph: iPhone 11 Pro
+  - text: $699.00 or 3 x $ 233.00 Add to cart
+  - button "delete"
+  - img "iPhone XS"
+  - paragraph: iPhone XS
+  - text: $549.00 or 4 x $ 137.25 Add to cart
+  - button "delete"
+  - img "iPhone XR"
+  - paragraph: iPhone XR
+  - text: $499.00 or 5 x $ 99.80 Add to cart
+  - button "delete"
+  - img "iPhone XS Max"
+  - paragraph: iPhone XS Max
+  - text: $649.00 or 7 x $ 92.71 Add to cart
+  - button "delete"
+  - img "Galaxy S20"
+  - paragraph: Galaxy S20
+  - text: $999.00 or 9 x $ 111.00 Add to cart
+  - button "delete"
+  - img "Galaxy S20+"
+  - paragraph: Galaxy S20+
+  - text: $1199.00 or 9 x $ 133.22 Add to cart
+  - button "delete"
+  - img "Galaxy S20 Ultra"
+  - paragraph: Galaxy S20 Ultra
+  - text: $1399.00 or 12 x $ 116.58 Add to cart
+  - button "delete"
+  - img "Galaxy S10"
+  - paragraph: Galaxy S10
+  - text: $899.00 or 5 x $ 179.80 Add to cart
+  - button "delete"
+  - img "Galaxy S9"
+  - paragraph: Galaxy S9
+  - text: $699.00 or 5 x $ 139.80 Add to cart
+  - button "delete"
+  - img "Galaxy Note 20"
+  - paragraph: Galaxy Note 20
+  - text: $999.00 or 7 x $ 142.71 Add to cart
+  - button "delete"
+  - img "Galaxy Note 20 Ultra"
+  - paragraph: Galaxy Note 20 Ultra
+  - text: $1299.00 or 7 x $ 185.57 Add to cart
+  - button "delete"
+  - img "Pixel 4"
+  - paragraph: Pixel 4
+  - text: $899.00 or 5 x $ 179.80 Add to cart
+  - button "delete"
+  - img "Pixel 3"
+  - paragraph: Pixel 3
+  - text: $599.00 or 5 x $ 119.80 Add to cart
+  - button "delete"
+  - img "Pixel 2"
+  - paragraph: Pixel 2
+  - text: $399.00 or 3 x $ 133.00 Add to cart
+  - button "delete"
+  - img "One Plus 8"
+  - paragraph: One Plus 8
+  - text: $799.00 or 6 x $ 133.17 Add to cart
+  - button "delete"
+  - img "One Plus 8T"
+  - paragraph: One Plus 8T
+  - text: $899.00 or 6 x $ 149.83 Add to cart
+  - button "delete"
+  - img "One Plus 8 Pro"
+  - paragraph: One Plus 8 Pro
+  - text: $899.00 or 6 x $ 149.83 Add to cart
+  - button "delete"
+  - img "One Plus 7T"
+  - paragraph: One Plus 7T
+  - text: $599.00 or 6 x $ 99.83 Add to cart
+  - button "delete"
+  - img "One Plus 7"
+  - paragraph: One Plus 7
+  - text: $499.00 or 3 x $ 166.33 Add to cart
+  - button "delete"
+  - img "One Plus 6T"
+  - paragraph: One Plus 6T
+  - text: $429.00 or 3 x $ 143.00 Add to cart
+- text: 0 0 Bag
+- paragraph: Add some products in the bag :)
+- text: SUBTOTAL
+- paragraph: $ 0.00
+- text: Continue Shopping
+- contentinfo:
+  - separator
+  - text: © 2020 BrowserStack. All rights reserved.
+- contentinfo
+```
